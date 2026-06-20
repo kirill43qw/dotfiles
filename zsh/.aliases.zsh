@@ -30,7 +30,7 @@ alias gst='git status'
 alias ls='eza --group-directories-first'
 alias ll='eza --icons --group-directories-first -la --no-filesize --no-time --no-user'
 alias la='eza --icons --group-directories-first -lah'
-alias tree='eza --tree --icons'
+alias tree='eza --tree --group-directories-first --icons --all --ignore-glob=".git|.venv|.mypy_cache|__pycache__|.pytest_cache|.ruff_cache"'
 
 # ── Custom ──────────────────────────────
 alias backup="rsync -avh --info=progress2 --delete --delete-excluded --exclude-from='/home/user0/.rsync_exclude' ~/dev ~/Documents ~/Pictures ~/笔记 ~/.icons ~/.themes ~/.config/kitty ~/.config/nvim ~/other/passwd_backup.kdbx ~/.local/share/backgrounds ~/.local/share/fonts ~/.zshrc ~/.gitconfig /media/user0/a74eefc6-14a9-436b-8df0-98af2fa02ee6/backup"
