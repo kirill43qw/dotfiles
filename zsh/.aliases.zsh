@@ -20,11 +20,19 @@ alias ...="cd ../.."
 # ── Development ──────────────────────────
 alias v='nvim'
 alias p='python3'
-alias lag='lazygit'
-alias lad='lazydocker'
+alias lzg='lazygit'
+alias lzd='lazydocker'
 # git
 alias gst='git status'
+alias gpl='git pull'
+alias gco='git checkout'
+alias gbr='git branch'
+alias gci='git commit'
+alias ghist='git log --graph --date=short --pretty=format:" %h %ad | %s%d [%an]"'
 # docker
+alias dps='docker ps'
+alias dcupd='docker compose up -d'
+alias dcdn='docker compose down'
 
 # eza
 alias ls='eza --group-directories-first'
@@ -33,4 +41,4 @@ alias la='eza --icons --group-directories-first -lah'
 alias tree='eza --tree --group-directories-first --icons --all --ignore-glob=".git|.venv|.mypy_cache|__pycache__|.pytest_cache|.ruff_cache"'
 
 # ── Custom ──────────────────────────────
-alias backup="rsync -avh --info=progress2 --delete --delete-excluded --exclude-from='/home/user0/.rsync_exclude' ~/dev ~/Documents ~/Pictures ~/笔记 ~/.icons ~/.themes ~/.config/kitty ~/.config/nvim ~/other/passwd_backup.kdbx ~/.local/share/backgrounds ~/.local/share/fonts ~/.zshrc ~/.gitconfig /media/user0/a74eefc6-14a9-436b-8df0-98af2fa02ee6/backup"
+alias backup="rsync -avh --info=progress2 --delete --delete-excluded --exclude-from='/home/user0/.rsync_exclude' ~/dev ~/Documents ~/Pictures ~/笔记 ~/.dotfiles ~/.icons ~/.themes ~/other/passwd_backup.kdbx ~/.local/share/backgrounds ~/.local/share/fonts ~/.gitconfig /media/user0/a74eefc6-14a9-436b-8df0-98af2fa02ee6/backup"

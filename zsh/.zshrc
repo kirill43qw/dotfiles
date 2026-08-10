@@ -43,6 +43,8 @@ bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 bindkey "^[k" up-line-or-beginning-search
 bindkey "^[j" down-line-or-beginning-search
 bindkey '^[[Z' reverse-menu-complete
+bindkey -r '^L'
+bindkey -r '^J'
 
 # ── Autocompletion & FZF Config ──────────
 autoload -Uz compinit
