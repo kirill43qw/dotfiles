@@ -8,9 +8,10 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 -- отключение автоматического продолжение комментариев на новой строке
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
   callback = function()
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
   end,
   desc = "Disable auto-commenting on new line",
 })
