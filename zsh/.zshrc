@@ -6,19 +6,22 @@ fi
 export PATH="$PATH:/home/user0/.local/bin"
 export TERM="xterm-256color"
 export EDITOR="/usr/local/bin/nvim"
+export MANPAGER="batcat -l man -p"
+
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
-export MANPAGER="batcat -l man -p"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+
 # ── History Settings ─────────────────────
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt appendhistory
 setopt sharehistory
 setopt inc_append_history
@@ -26,6 +29,8 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
+setopt hist_reduce_blanks
+
 
 # ── Shell Behavior ───────────────────────
 setopt numeric_glob_sort
@@ -46,13 +51,13 @@ bindkey '^[[Z' reverse-menu-complete
 bindkey -r '^L'
 bindkey -r '^J'
 
+
 # ── Autocompletion & FZF Config ──────────
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:ls:*' fzf-preview 'cat $realpath'
 
