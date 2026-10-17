@@ -13,16 +13,24 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline"
 
-# Lazy-load NVM
+
+# ── Node & NVM ───────────────────────────
 export NVM_DIR="$HOME/.nvm"
-load_nvm() {
-  unset -f nvm node npm npx
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-}
-for cmd in nvm node npm npx; do
-  eval "$cmd() { load_nvm; $cmd \"\$@\"; }"
-done
+if [ -d "$NVM_DIR/versions/node" ]; then
+  NODE_VER=$(find "$NVM_DIR/versions/node" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)
+  [ -n "$NODE_VER" ] && export PATH="$NODE_VER/bin:$PATH"
+fi
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  nvm() {
+    unset -f nvm
+    \. "$NVM_DIR/nvm.sh"
+    nvm "$@"
+  }
+fi
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 
 # ── History Settings ─────────────────────
@@ -61,7 +69,11 @@ bindkey -r '^J'
 
 # ── Autocompletion & FZF Config ──────────
 autoload -Uz compinit
-compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m+1) ]]; then
+  compinit
+else
+  compinit -C
+fi
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -76,6 +88,10 @@ zstyle ':fzf-tab:complete:ls:*' fzf-preview 'cat $realpath'
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
+# Современный fzf вместо устаревших путей /usr/share/doc
+# if command -v fzf >/dev/null 2>&1; then
+#   eval "$(fzf --zsh)"
+# fi
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 # modules
