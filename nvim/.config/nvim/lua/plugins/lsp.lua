@@ -1,4 +1,3 @@
--- plugins/lsp.lua
 return {
   {
     "neovim/nvim-lspconfig",
@@ -11,6 +10,11 @@ return {
               logLevel = "error",
             },
           },
+          on_attach = function(client)
+            if client.name == "ruff" then
+              client.server_capabilities.hoverProvider = false
+            end
+          end,
         },
         basedpyright = {
           enabled = true,
@@ -25,7 +29,7 @@ return {
             },
           },
         },
-        pyright = { enabled = false }, -- disable pyright
+        pyright = { enabled = false },
       },
     },
   },

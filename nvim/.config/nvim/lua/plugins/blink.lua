@@ -24,6 +24,12 @@ return {
           show_documentation = false,
         },
       },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer", "dadbod" },
+        providers = {
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" }, -- for lang.sql
+        },
+      },
     },
   },
 }

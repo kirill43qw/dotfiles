@@ -45,8 +45,8 @@ return {
     lazy = true,
     opts = {
       -- colorscheme = "kanso-mist",
-      colorscheme = "nordfox",
-      -- colorscheme = "kanagawa-dragon",
+      -- colorscheme = "nordfox",
+      colorscheme = "kanagawa-dragon",
     },
   },
 }
